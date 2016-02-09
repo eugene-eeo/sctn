@@ -11,8 +11,7 @@ fn build_set(string: &str) -> StrHash {
     return set;
 }
 
-fn intersections<'a>(string: &str,
-                     mut set: StrHash<'a>) -> StrHash<'a> {
+fn intersections<'a>(string: &str, mut set: StrHash<'a>) -> StrHash<'a> {
     for line in string.split('\n') {
         if !set.contains(line) {
             set.remove(line);
@@ -25,13 +24,13 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     let first = match args.get(2) {
         Some(v) => v,
-        None    => return,
+        None => return,
     };
 
     let (_, rest) = args.split_at(2);
     let last = match rest.to_vec().pop() {
         Some(v) => v,
-        None    => return,
+        None => return,
     };
 
     let mut set: StrHash = build_set(first);
