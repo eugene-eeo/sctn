@@ -1,46 +1,44 @@
 use std::env;
-use std::collections::{HashMap,BTreeMap};
+use std::collections::HashSet;
 
-fn build_map(string: String) -> HashMap<String,usize> {
-    let mut map = HashMap::new();
-    for (idx, line) in string.split('\n').enumerate() {
-        map.insert(line.to_string(), idx);
+fn build_map(string: &str) -> HashSet<&str> {
+    let mut set = HashSet::new();
+    for line in string.split('\n') {
+        set.insert(line);
     }
-    return map;
+    return set;
 }
 
-fn intersections(string: String,
-                 mut map: HashMap<String,usize>) -> HashMap<String,usize> {
+fn intersections<'a>(string: &str,
+                     mut set: HashSet<&'a str>) -> HashSet<&'a str> {
     for line in string.split('\n') {
-        if !map.contains_key(line) {
-            map.remove(line);
+        if !set.contains(line) {
+            set.remove(line);
         }
     }
-    return map;
-}
-
-fn order_map(map: HashMap<String,usize>) -> BTreeMap<usize,String> {
-    let mut strs = BTreeMap::new();
-    for (line, idx) in map {
-        strs.insert(idx, line);
-    }
-    return strs;
+    return set;
 }
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let first = match args.get(2) {
-        Some(v) => v.to_string(),
+        Some(v) => v,
         None    => return,
     };
 
     let (_, rest) = args.split_at(2);
-    let mut map   = build_map(first);
+    let last = match rest.to_vec().pop() {
+        Some(v) => v,
+        None    => return,
+    };
+
+    let mut set = build_map(first);
     for string in rest {
-        map = intersections(string.to_owned(), map);
+        set = intersections(string, set);
     }
-    let lines = order_map(map);
-    for line in lines.values() {
-        println!("{}", line);
+    for line in last.split('\n') {
+        if set.contains(line) {
+            println!("{}", line);
+        }
     }
 }
