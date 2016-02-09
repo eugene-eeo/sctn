@@ -1,0 +1,6 @@
+[package]
+name = "sctn"
+version = "0.1.0"
+authors = ["Eeo Jun <packwolf58@gmail.com>"]
+
+[dependencies]
