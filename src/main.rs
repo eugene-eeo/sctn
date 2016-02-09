@@ -22,18 +22,15 @@ fn intersections<'a>(string: &str, mut set: StrHash<'a>) -> StrHash<'a> {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let first = match args.get(2) {
-        Some(v) => v,
-        None => return,
+    if args.len() < 3 {
+        return;
     };
 
+    let ref first = args[1];
     let (_, rest) = args.split_at(2);
-    let last = match rest.to_vec().pop() {
-        Some(v) => v,
-        None => return,
-    };
+    let last = rest.to_vec().pop().unwrap();
 
-    let mut set: StrHash = build_set(first);
+    let mut set: StrHash = build_set(&first);
     for string in rest {
         set = intersections(string, set);
     }
