@@ -1,7 +1,9 @@
 use std::env;
 use std::collections::HashSet;
 
-fn build_set(string: &str) -> HashSet<&str> {
+type StrHash<'a> = HashSet<&'a str>;
+
+fn build_set(string: &str) -> StrHash {
     let mut set = HashSet::new();
     for line in string.split('\n') {
         set.insert(line);
@@ -10,7 +12,7 @@ fn build_set(string: &str) -> HashSet<&str> {
 }
 
 fn intersections<'a>(string: &str,
-                     mut set: HashSet<&'a str>) -> HashSet<&'a str> {
+                     mut set: StrHash<'a>) -> StrHash<'a> {
     for line in string.split('\n') {
         if !set.contains(line) {
             set.remove(line);
@@ -32,7 +34,7 @@ fn main() {
         None    => return,
     };
 
-    let mut set = build_set(first);
+    let mut set: StrHash = build_set(first);
     for string in rest {
         set = intersections(string, set);
     }
