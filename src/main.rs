@@ -8,10 +8,9 @@ fn build_index(string: &str) -> StrHash {
 }
 
 fn intersection<'a>(string: &'a str, index: &StrHash<'a>) -> StrHash<'a> {
-    let new = build_index(string);
-    index.intersection(&new)
-         .map(|x| *x)
-         .collect()
+    build_index(string).intersection(&index)
+                       .map(|x| *x)
+                       .collect()
 }
 
 fn main() {
