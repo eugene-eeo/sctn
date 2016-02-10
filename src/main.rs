@@ -1,7 +1,7 @@
 use std::env;
-use std::collections::HashSet;
+use std::collections::BTreeSet;
 
-type StrHash<'a> = HashSet<&'a str>;
+type StrHash<'a> = BTreeSet<&'a str>;
 
 fn build_index(string: &str) -> StrHash {
     string.split('\n').collect()
