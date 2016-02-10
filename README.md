@@ -1,6 +1,6 @@
 # sctn
 
-**Output interSeCTioN tool**, written in Rust and mostly
+**output interSeCTioN tool**, written in Rust and mostly
 an excuse for myself to learn the nice features and work
 with the new 1.x release. Most of the time you'd want to
 call it like:
