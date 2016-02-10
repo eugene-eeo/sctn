@@ -11,7 +11,7 @@ fn intersection<'a>(string: &'a str, index: &StrHash<'a>) -> StrHash<'a> {
     let new = build_index(string);
     index.intersection(&new)
          .map(|x| *x)
-         .collect::<StrHash>()
+         .collect()
 }
 
 fn main() {
