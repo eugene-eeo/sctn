@@ -19,7 +19,7 @@ fn main() {
         return;
     }
 
-    let ref first = args.get(1).unwrap();
+    let ref first = args[1];
     let (_, rest) = args.split_at(2);
     let mut rest = rest.to_vec();
     let last = rest.pop().unwrap();
