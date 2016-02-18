@@ -1,8 +1,19 @@
+from os.path import exists
 from subprocess import check_output
+
+PATH = None
+
+for item in ['debug', 'release']:
+    path = './target/{0}/sctn'.format(item)
+    if exists(path):
+        PATH = path
+
+if not PATH:
+    raise RuntimeError("No sctn executeable found.")
 
 
 def sh(args=[]):
-    return check_output(['./target/debug/sctn'] + args)
+    return check_output([PATH] + args)
 
 
 assert sh(['one\ntwo\nthree', 'one\ntwo\n', 'one']) == b'one\n'
