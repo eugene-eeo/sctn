@@ -10,7 +10,7 @@ fn build_index(string: &str) -> StrSet {
 fn intersection<'a>(string: &'a str, index: &StrSet<'a>) -> StrSet<'a> {
     build_index(string)
         .intersection(&index)
-        .map(|x| *x)
+        .map(|&x| x)
         .collect()
 }
 
