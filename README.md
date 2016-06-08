@@ -12,8 +12,3 @@ $ sctn "$(cat file1)" "$(cat file2)" "$(cat file3)" ...
 Returns the lines common to all files, but ordered with
 respect to the last file. Useful for stuff like figuring
 out dependencies.
-
-## todo
-
- - actually test this shit
- - write the help page
