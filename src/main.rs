@@ -8,24 +8,25 @@ fn build_index(string: &str) -> StrHash {
 }
 
 fn intersection<'a>(string: &'a str, index: &StrHash<'a>) -> StrHash<'a> {
-    build_index(string).intersection(&index)
-                       .map(|x| *x)
-                       .collect()
+    build_index(string)
+        .intersection(&index)
+        .map(|x| *x)
+        .collect()
 }
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    if args.len() < 3 {
+    let mut args: Vec<String> = env::args()
+        .skip(1)
+        .collect();
+    if args.len() < 2 {
         return;
     }
 
-    let ref first = args[1];
-    let (_, rest) = args.split_at(2);
-    let mut rest = rest.to_vec();
-    let last = rest.pop().unwrap();
+    let last    = args.pop().unwrap();
+    let initial = args.pop().unwrap();
 
-    let mut index = build_index(first);
-    for string in &rest {
+    let mut index = build_index(&initial);
+    for string in &args {
         index = intersection(string, &index);
     }
     for line in last.split('\n') {
