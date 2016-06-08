@@ -1,13 +1,13 @@
 use std::env;
 use std::collections::BTreeSet;
 
-type StrHash<'a> = BTreeSet<&'a str>;
+type StrSet<'a> = BTreeSet<&'a str>;
 
-fn build_index(string: &str) -> StrHash {
+fn build_index(string: &str) -> StrSet {
     string.split('\n').collect()
 }
 
-fn intersection<'a>(string: &'a str, index: &StrHash<'a>) -> StrHash<'a> {
+fn intersection<'a>(string: &'a str, index: &StrSet<'a>) -> StrSet<'a> {
     build_index(string)
         .intersection(&index)
         .map(|x| *x)
