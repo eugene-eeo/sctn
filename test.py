@@ -4,9 +4,10 @@ from subprocess import check_output
 PATH = None
 
 for item in ['debug', 'release']:
-    path = './target/{0}/sctn'.format(item)
-    if exists(path):
-        PATH = path
+	for executable in ['sctn', 'sctn.exe']:
+	    path = './target/{0}/{1}'.format(item, executable)
+	    if exists(path):
+	        PATH = path
 
 if not PATH:
     raise RuntimeError("No sctn executeable found.")
