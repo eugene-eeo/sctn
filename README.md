@@ -1,14 +1,12 @@
 # sctn
 
-**output interSeCTioN tool**, written in Rust and mostly
-an excuse for myself to learn the nice features and work
-with the new 1.x release. Most of the time you'd want to
-call it like:
+A bastardised spelling of the word intersection. Written
+in Rust and mainly an excuse for myself to learn to work
+with Cargo and the nice features and type system. It returns
+the lines common to all strings, but ordered with respect
+to the last string. Usage:
 
 ```shell
-$ sctn "$(cat file1)" "$(cat file2)" "$(cat file3)" ...
+$ sctn -h
+$ sctn "$(command1)" "$(command2)" ...
 ```
-
-Returns the lines common to all files, but ordered with
-respect to the last file. Useful for stuff like figuring
-out dependencies.
