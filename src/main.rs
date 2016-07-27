@@ -17,7 +17,7 @@ fn intersection<'a>(string: &'a str, index: &StrSet<'a>) -> StrSet<'a> {
 }
 
 fn main() {
-    let mut first: String = "".to_string();
+    let mut first = "".to_string();
     let mut strings: Vec<String> = vec![];
     {
         let mut ap = ArgumentParser::new();
